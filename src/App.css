@@ -183,3 +183,24 @@ img{
   max-height: 100%;
   object-fit: cover;
 }
+
+/* Loader */
+
+.loader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #1c1c1c;
+  position: fixed;
+  z-index: 1000;
+}
+
+.loader-img{
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  object-fit: cover;
+
+}

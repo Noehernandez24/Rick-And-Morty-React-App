@@ -4,16 +4,24 @@ import hero from '../assets/hero.png'
 import ResidentsCard from './ResidentsCard';
 import unknowText from '../assets/unknow-text.png'
 import unknowImg from '../assets/unknow-residents.png'
+import loaderImg from '../assets/loader.gif'
 
 const RickAndMorty = () => {
     const [dimension, setDimension] = useState({});
-    const [inputID, setInputID] = useState("")
+    const [inputID, setInputID] = useState("");
+    const [loader, setLoader] = useState(true)
 
 
     useEffect(() => {
         const randomID = Math.floor(Math.random() * 127)
         axios.get(`https://rickandmortyapi.com/api/location/${randomID}`)
-        .then(res => setDimension(res.data))
+        .then(res => {
+            setDimension(res.data)
+            setTimeout(() => {
+             setLoader(false)
+            }, 4000);
+            
+        })
     },[])
 
     const searchForID = () =>{
@@ -28,6 +36,14 @@ const RickAndMorty = () => {
 
     return (
         <main>
+            {
+                loader === true &&
+                <div className="loader">
+                <img src={loaderImg} alt="" className="loader-img" />
+                </div>
+            }
+             
+           
             <header className="hero">
                 <img className='hero-img' src={hero} alt="" />
 
