@@ -19,7 +19,7 @@ const RickAndMorty = () => {
             setDimension(res.data)
             setTimeout(() => {
              setLoader(false)
-            }, 4000);
+            }, 3000);
             
         })
     },[])
