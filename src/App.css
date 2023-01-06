@@ -189,11 +189,19 @@ img{
   display: flex;
   justify-content: center;
   height: 450px;
+  position: relative;
+
 }
 
+
 .api-loader-img{
+  position: fixed;
+  top: 30%;
+  left: calc(50% - 250px);
+  width: 450px;
   transform: translateY(0);
   animation: loader-api .4s infinite alternate;
+  z-index: 2000;
 }
 
 

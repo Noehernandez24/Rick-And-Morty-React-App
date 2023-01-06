@@ -35,8 +35,7 @@ const RickAndMorty = () => {
                 setDimension(res.data)
                 setTimeout(() => {
                     setApiLoader(false)
-                }, 300);
-                
+                }, 1000);
             })
         } 
     }
@@ -86,9 +85,7 @@ const RickAndMorty = () => {
             {/* API LOADER */}
             {
                 apiLoader === true &&
-                <section className='api-loader'>
                     <img className='api-loader-img' src={loaderSearch} alt="" />
-                </section>
             }
             
 
