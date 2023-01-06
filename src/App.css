@@ -207,7 +207,6 @@ img{
 
 @keyframes error {
   0% {
-    position: relative;
     bottom: 0;
   }
 

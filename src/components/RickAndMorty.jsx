@@ -35,7 +35,7 @@ const RickAndMorty = () => {
                 setDimension(res.data)
                 setTimeout(() => {
                     setApiLoader(false)
-                }, 300);
+                }, 500);
             })
         } 
     }
