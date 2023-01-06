@@ -6,12 +6,21 @@ import unknowText from '../assets/unknow-text.png'
 import unknowImg from '../assets/unknow-residents.png'
 import loaderImg from '../assets/loader.gif'
 import loaderSearch from '../assets/loader-search.png'
+import Pagination from './Pagination';
 
 const RickAndMorty = () => {
     const [dimension, setDimension] = useState({});
     const [inputID, setInputID] = useState("");
     const [loader, setLoader] = useState(true);
     const [apiLoader, setApiLoader] = useState(false);
+    //Pagination
+    const [actualPage, setActualPage] = useState(1)
+    const [postPerPage, setPostPerPage] = useState(9) //Cantidad de elementos por pagina
+
+    const lastPostIndex = actualPage * postPerPage;
+    const firstPostIndex = lastPostIndex - postPerPage
+    const residentsPagination = dimension.residents?.slice(firstPostIndex, lastPostIndex)
+
 
 
     useEffect(() => {
@@ -30,6 +39,7 @@ const RickAndMorty = () => {
 
         if (inputID < 127) {
             setApiLoader(true)
+            setActualPage(1)
             axios.get(`https://rickandmortyapi.com/api/location/${inputID}`)
             .then(res => {
                 setDimension(res.data)
@@ -42,6 +52,7 @@ const RickAndMorty = () => {
 
 
     // console.log(dimension);
+    console.log(residentsPagination);
 
     return (
         <main>
@@ -93,11 +104,18 @@ const RickAndMorty = () => {
 
             <section className='card-container'>
             {
-                dimension.residents?.map(dimension => (
+               residentsPagination?.map(dimension => (
                     <ResidentsCard key={dimension} dimension={dimension}/>
                 ))
             }
             </section>
+
+            <Pagination 
+            totalPosts={dimension.residents?.length}
+            postPerPage={postPerPage}
+            setActualPage={setActualPage}
+            actualPage={actualPage}
+            />
             
             
         </main>

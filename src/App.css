@@ -3,6 +3,8 @@
 :root{
   --card-color: #062226;
   --font: 'Roboto', sans-serif;
+
+  scroll-behavior: smooth;
 }
 
 *{
@@ -80,10 +82,13 @@ img{
 .card-container{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
-  width: 53%;
-  gap: 40px 25px;
-  margin: 70px auto;
+  justify-items: center;
+  align-items: center;
+  padding: 2rem 0;
+  gap: 60px 0;
+  width: 70%;
+  margin: 0 auto;
+
 }
 
 .card{
@@ -201,6 +206,33 @@ img{
   z-index: 2000;
 }
 
+.pagination{
+  background-color: var(--card-color);
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+.btn-pagination{
+  cursor: pointer;
+  border: none;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: darkcyan;
+  color: white;
+  font-weight: 800;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-pagination:hover{
+  background-color: #0eacac;
+}
 
 
 /* Animations */
