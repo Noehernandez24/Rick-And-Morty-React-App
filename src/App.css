@@ -147,27 +147,7 @@ img{
   bottom: 0px;
 }
 
-@keyframes error {
-  0% {
-    bottom: 0;
-  }
 
-  25%{
-    bottom: -20px;
-  }
-
-  50%{
-    bottom: -20px;
-  }
-
-  75%{
-    bottom: -20px;
-  }
-
-  95%{
-    bottom: 0;
-  }
-}
 
 .residents-unknow{
   text-align: center;
@@ -204,3 +184,54 @@ img{
   object-fit: cover;
 
 }
+
+.api-loader{
+  display: flex;
+  justify-content: center;
+  height: 450px;
+}
+
+.api-loader-img{
+  transform: translateY(0);
+  animation: loader-api .4s infinite alternate;
+}
+
+
+
+/* Animations */
+
+@keyframes error {
+  0% {
+    position: relative;
+    bottom: 0;
+  }
+
+  25%{
+    bottom: -20px;
+  }
+
+  50%{
+    bottom: -20px;
+  }
+
+  75%{
+    bottom: -20px;
+  }
+
+  95%{
+    bottom: 0;
+  }
+}
+
+@keyframes loader-api {
+  0%{
+    transform: translateY(0);
+  }
+
+  100%{
+    transform: translateY(15px);
+  }
+  
+}
+
+

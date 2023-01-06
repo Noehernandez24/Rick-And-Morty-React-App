@@ -5,11 +5,13 @@ import ResidentsCard from './ResidentsCard';
 import unknowText from '../assets/unknow-text.png'
 import unknowImg from '../assets/unknow-residents.png'
 import loaderImg from '../assets/loader.gif'
+import loaderSearch from '../assets/loader-search.png'
 
 const RickAndMorty = () => {
     const [dimension, setDimension] = useState({});
     const [inputID, setInputID] = useState("");
-    const [loader, setLoader] = useState(true)
+    const [loader, setLoader] = useState(true);
+    const [apiLoader, setApiLoader] = useState(false);
 
 
     useEffect(() => {
@@ -25,9 +27,17 @@ const RickAndMorty = () => {
     },[])
 
     const searchForID = () =>{
+
         if (inputID < 127) {
+            setApiLoader(true)
             axios.get(`https://rickandmortyapi.com/api/location/${inputID}`)
-            .then(res => setDimension(res.data))
+            .then(res => {
+                setDimension(res.data)
+                setTimeout(() => {
+                    setApiLoader(false)
+                }, 500);
+                
+            })
         } 
     }
 
@@ -49,7 +59,7 @@ const RickAndMorty = () => {
 
                 <div className="input-container">
 
-                <input id='id' className='hero-input' type="text" placeholder='Escribe el ID de la ubicación (1 - 126)' value={inputID} onChange={e => setInputID(e.target.value)}/>
+                <input id='id' className='hero-input' type="text" placeholder='Escribe el ID de la ubicación del (1 - 126)' value={inputID} onChange={e => setInputID(e.target.value)}/>
                 <button className='hero-btn' onClick={searchForID}>SEARCH</button>
                 {inputID > 126 && <p className= "error" id='error'> "El ID ingresado no puede sobrepasar de 126"</p>}
                 
@@ -64,6 +74,7 @@ const RickAndMorty = () => {
                 <h3>Población: <br /> <span>{dimension.residents?.length}</span></h3>
             </article>
 
+            {/* RESIDENTS UKNOWN CONDITIONAL */}
             {
                 dimension.residents?.length == 0 &&
                 <section className='residents-unknow'>
@@ -71,6 +82,15 @@ const RickAndMorty = () => {
                     <img className='u-img' src={unknowImg} alt="" />
                 </section>
             }
+
+            {/* API LOADER */}
+            {
+                apiLoader === true &&
+                <section className='api-loader'>
+                    <img className='api-loader-img' src={loaderSearch} alt="" />
+                </section>
+            }
+            
 
             <section className='card-container'>
             {
